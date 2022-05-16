@@ -33,7 +33,7 @@
           <li><a class="nav-link scrollto " href="dashboard.php">Home</a></li>
           <li><a class="nav-link scrollto" href="menu.php">Menu</a></li>
           <li><a class="nav-link scrollto" href="customers.php">Customers</a></li>
-          <li><a class="nav-link scrollto " href="recipies.php">Recipies</a></li>
+          <li><a class="nav-link scrollto " href="recipes.php">Recipes</a></li>
           <li><a class="nav-link scrollto" href="orders.php">Orders</a></li>
           <li><a class="nav-link scrollto" href="ingredients.php">Ingredients</a></li>
         </ul>
@@ -43,32 +43,54 @@
 
   <main id="main">
   <!-- ======= Orders ======= -->
-  
-    <section class="form">
+ <section id="services" class="services section-bg">
+      <div class="container mt-5">
+        <div class="section-title">
+          <h2> Orders Panel </h2>
+        <p> What would you like to do? </p>
+        </div>
 
-      
-<div class="container mt-5">
-
-  <h2 >Orders</h2>
-  <span style="color:#FF0000; font-size:14px">* Required</span>
-  
-  
-  <Form action="create.php" method="post">
-    <input type="hidden" name="id" value="orders"/>
-    <label> Meal Name <span style="color:#FF0000">*</span></label> <br>
-    <input type="text" name="meal_name"  class="form-control"/><br>
-    <label> Quantity <span style="color:#FF0000">*</span></label> <br>
-    <input type="text" name="quantity"  class="form-control"/><br>
-    <label> Cost <span style="color:#FF0000">*</span></label> <br>
-    <input type="text" name="cost"  class="form-control"/><br>
-
-
-    <button class="btn btn-success" type="submit"> Save </button>
-    
-    </Form>
+        <div class="row">
+			<div class="col-8">
+    			<div class="form">  
+ 				 <h2>Create New Order</h2>
+ 				 <span style="color:#FF0000; font-size:14px">* Required</span>
+				   <Form action="create.php" method="post">
+					<input type="hidden" name="id" value="orders"/>
+					<label> Meal Name <span style="color:#FF0000">*</span></label> <br>
+					<input type="text" name="meal_name"  class="form-control"/><br>
+					<label> Quantity <span style="color:#FF0000">*</span></label> <br>
+					<input type="text" name="quantity"  class="form-control"/><br>
+					<label> Cost <span style="color:#FF0000">*</span></label> <br>
+					<input type="text" name="cost"  class="form-control"/><br>
+					<button class="btn btn-success" type="submit"> Save </button>
+					
+					</Form>
+	  				</div>
+					</div>
+			<div class="col-4">
+            <div class="icon-box">
+              <h4>View Orders Database</h4>
+              <p>View your existing orders.</p>
+			  <a href="view.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+			  </div>
+            <div class="icon-box mt-5">
+              <h4>Update Orders Database</h4>
+              <p>Update your orders database.</p>
+			  <a href="update.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+            </div>
+            <div class="icon-box mt-5">
+              <h4>Delete Order From Database</h4>
+              <p>Delete orders from the database.</p>
+			  <a href="delete.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+            </div>
+			</div>
+			
+			</div>
   
   
   </div>
+  
     </section>
 
   </main><!-- End #main -->

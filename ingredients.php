@@ -33,7 +33,7 @@
           <li><a class="nav-link scrollto " href="dashboard.php">Home</a></li>
           <li><a class="nav-link scrollto" href="menu.php">Menu</a></li>
           <li><a class="nav-link scrollto" href="customers.php">Customers</a></li>
-          <li><a class="nav-link scrollto " href="recipies.php">Recipies</a></li>
+          <li><a class="nav-link scrollto " href="recipes.php">Recipes</a></li>
           <li><a class="nav-link scrollto" href="orders.php">Orders</a></li>
           <li><a class="nav-link scrollto" href="ingredients.php">Ingredients</a></li>
         </ul>
@@ -43,31 +43,56 @@
 
   <main id="main">
   <!-- ======= Ingredient Level ======= -->
-  
-    <section class="form">
+  <section id="services" class="services section-bg">
+      <div class="container mt-5">
+        <div class="section-title">
+          <h2> Ingredient Level Panel </h2>
+        <p> What would you like to do? </p>
+        </div>
 
-      
-<div class="container mt-5">
-
-  <h2 >Add an Ingredient </h2>
-  <span style="color:#FF0000; font-size:14px">* Required</span>
+        <div class="row">
+			<div class="col-8">
+    			<div class="form">  
+ 				 <h2>Add an Ingredient</h2>
+ 				 <span style="color:#FF0000; font-size:14px">* Required</span>
+				    <Form action="create.php" method="post">
+					<input type="hidden" name="id" value="ingredients"/>
+					<label> Name <span style="color:#FF0000">*</span></label> <br>
+					<input type="text" name="ingredient_name"  class="form-control"/><br>
+					<label> Quantity <span style="color:#FF0000">*</span></label> <br>
+					<input type="text" name="quantity"  class="form-control"/><br>
+					<label> Cost </label> <br>
+					<input type="text" name="cost"  class="form-control"/><br>
+					
+					<button class="btn btn-success" type="submit"> Save </button>
+					
+					</Form>
   
-  
-  <Form action="create.php" method="post">
-    <input type="hidden" name="id" value="ingredients"/>
-    <label> Name <span style="color:#FF0000">*</span></label> <br>
-    <input type="text" name="ingredient_name"  class="form-control"/><br>
-    <label> Quantity <span style="color:#FF0000">*</span></label> <br>
-    <input type="text" name="quantity"  class="form-control"/><br>
-    <label> Cost </label> <br>
-    <input type="text" name="cost"  class="form-control"/><br>
-    
-    <button class="btn btn-success" type="submit"> Save </button>
-    
-    </Form>
+	  				</div>
+					</div>
+			<div class="col-4">
+            <div class="icon-box">
+              <h4>View Ingredients</h4>
+              <p>View your ingredients.</p>
+			  <a href="view.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+			  </div>
+            <div class="icon-box mt-5">
+              <h4>Update Ingredients Database</h4>
+              <p>Update your ingredient database.</p>
+			  <a href="update.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+            </div>
+            <div class="icon-box mt-5">
+              <h4>Delete Ingredient From Database</h4>
+              <p>Delete ingredient from the database.</p>
+			  <a href="delete.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+            </div>
+			</div>
+			
+			</div>
   
   
   </div>
+  
     </section>
 
   </main><!-- End #main -->

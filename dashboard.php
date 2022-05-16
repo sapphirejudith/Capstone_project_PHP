@@ -34,7 +34,7 @@
           <li><a class="nav-link scrollto " href="dashboard.php">Home</a></li>
           <li><a class="nav-link scrollto" href="menu.php">Menu</a></li>
           <li><a class="nav-link scrollto" href="customers.php">Customers</a></li>
-          <li><a class="nav-link scrollto " href="recipies.php">Recipies</a></li>
+          <li><a class="nav-link scrollto " href="recipes.php">Recipes</a></li>
           <li><a class="nav-link scrollto" href="orders.php">Orders</a></li>
           <li><a class="nav-link scrollto" href="ingredients.php">Ingredients</a></li>
         </ul>
