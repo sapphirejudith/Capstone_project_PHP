@@ -1,46 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title> Capstone Project PHP</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo me-auto">
-        <h1><a href="index.html"><span style="color: blue;">I</span>M</a></h1>
-      </div>
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto " href="dashboard.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="menu.php">Menu</a></li>
-          <li><a class="nav-link scrollto" href="customers.php">Customers</a></li>
-          <li><a class="nav-link scrollto " href="recipes.php">Recipes</a></li>
-          <li><a class="nav-link scrollto" href="orders.php">Orders</a></li>
-          <li><a class="nav-link scrollto" href="ingredients.php">Ingredients</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-  </header>
-  <!-- End Header -->
+<?php include 'header.php';
+      include 'forms/session.php';
+	  include 'forms/validate.php';
+	include "forms/db_conn.php";
+	include "forms/function.php";
+			  ?>
 
   <main id="main">
   <!-- ======= Customers ======= -->
@@ -56,41 +19,61 @@
     			<div class="form">  
  				 <h2>Create New Customer</h2>
  				 <span style="color:#FF0000; font-size:14px">* Required</span>
-				  <Form action="create.php" method="post">
-					<input type="hidden" name="id" value="customers" />
-					<label> First Name <span style="color:#FF0000">*</span></label> <br>
+				  <Form  method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+					<label> First Name</label><span style="color:#FF0000">* <?php echo $firstnameErr;?></span> <br>
 					<input type="text" name="firstname"  class="form-control"/><br>
-					<label> Last Name <span style="color:#FF0000">*</span></label> <br>
-					<input type="text" name="lastname"  class="form-control"/><br>
-					<label> Sex </label> <br>
-					<input type="text" name="sex"  class="form-control"/><br>
-					<label>Email </label> <br>
-					<input type="text" name="email"  class="form-control"/><br>
+					<label> Last Name</label><span  style="color:#FF0000">* <?php echo $lastnameErr;?></span> <br>
+					<input type="text" name="lastname" class="form-control"/><br>
+					<label>Sex</label><span style="color:#FF0000">* <?php echo $sexErr;?></span>  <br />
+					<input type="radio" name="sex" value="female" class="form">&nbsp;Female &nbsp;
+					<input type="radio" name="sex" value="male" class="form">&nbsp;Male &nbsp;
+					<input type="radio" name="sex" value="other" class="form">&nbsp;Other<br/>
+					<label>Email </label><span style="color:#FF0000">* <?php echo $emailErr;?></span><br>
+					<input type="text" name="email"  class="form-control"/><br />
 					<label> Phone Number </label> <br>
 					<input type="text" name="phonenum"  class="form-control"/><br>
 					<label>Residential Address </label> <br>
 					<input type="text" name="adress"  class="form-control"/><br>
-					<button class="btn btn-success" type="submit"> Save </button>
+					<button class="btn btn-success" name="submit" type="submit"> Save </button>
 					
 					</Form>
+					<?php
+					if(isset($_POST['submit'])){
+					if ($firstnameErr == "" && $lastnameErr =="" && $emailErr =="" && $sexErr == ""){
+					if (isset($_POST['submit'])) {
+			 		$firstname = $_POST['firstname'];
+			 		$lastname = $_POST['lastname'];
+			 		$sex = $_POST['sex'];
+			 		$email = $_POST['email'];
+			 		$phonenum = $_POST['phonenum'];
+			 		$address = $_POST['adress'];
+							
+						$qe = query("INSERT INTO customers set
+					firstname = '$firstname'
+					,lastname = '$lastname'
+					,sex = '$sex'
+					,email = '$email'
+					,phonenum = '$phonenum'
+					,adress = '$address'
+							");
+						confirm($qe);
+							header("location: customers.php");
+							
+			 	}
+
+					} else {
+					echo "Fill required fields";
+					}
+					}
+					?>
 	  				</div>
 					</div>
-			<div class="col-4">
+			<div class="col-4" style="margin-top: 10%;">
             <div class="icon-box">
               <h4>View Customer Database</h4>
               <p>View your existing customers.</p>
-			  <a href="view.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+			  <a href="view_customers.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
 			  </div>
-            <div class="icon-box mt-5">
-              <h4>Update Customer Database</h4>
-              <p>Update your customer database.</p>
-			  <a href="update.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
-            </div>
-            <div class="icon-box mt-5">
-              <h4>Delete Customer From Database</h4>
-              <p>Delete customers from the database.</p>
-			  <a href="delete.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
-            </div>
 			</div>
 			
 			</div>

@@ -1,45 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include 'header.php';
+      include 'forms/session.php';
+	  include 'forms/validate.php';
+	include "forms/db_conn.php";
+	include "forms/function.php";
+			  ?>
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title> Capstone Project PHP</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo me-auto">
-        <h1><a href="index.html"><span style="color: blue;">I</span>M</a></h1>
-      </div>
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto " href="dashboard.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="menu.php">Menu</a></li>
-          <li><a class="nav-link scrollto" href="customers.php">Customers</a></li>
-          <li><a class="nav-link scrollto " href="recipes.php">Recipes</a></li>
-          <li><a class="nav-link scrollto" href="orders.php">Orders</a></li>
-          <li><a class="nav-link scrollto" href="ingredients.php">Ingredients</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-  </header><!-- End Header -->
 
   <main id="main">
   <!-- ======= Ingredient Level ======= -->
@@ -55,42 +20,51 @@
     			<div class="form">  
  				 <h2>Add an Ingredient</h2>
  				 <span style="color:#FF0000; font-size:14px">* Required</span>
-				    <Form action="create.php" method="post">
-					<input type="hidden" name="id" value="ingredients"/>
-					<label> Name <span style="color:#FF0000">*</span></label> <br>
+				    <Form  method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+					<label> Name <span style="color:#FF0000">* <?php echo $ingredient_nameErr;?></span></label> <br>
 					<input type="text" name="ingredient_name"  class="form-control"/><br>
-					<label> Quantity <span style="color:#FF0000">*</span></label> <br>
+					<label> Quantity <span style="color:#FF0000">* <?php echo $quantityErr;?></span></label> <br>
 					<input type="text" name="quantity"  class="form-control"/><br>
-					<label> Cost </label> <br>
+					<label> Cost <span style="color:#FF0000">* <?php echo $costErr;?></span></label> <br>
 					<input type="text" name="cost"  class="form-control"/><br>
 					
-					<button class="btn btn-success" type="submit"> Save </button>
+					<button class="btn btn-success" name="submit" type="submit"> Save </button>
 					
 					</Form>
-  
+					<?php
+					if(isset($_POST['submit'])){
+					if ($ingredient_nameErr == "" && $quantityErr =="" && $costErr ==""){
+					if (isset($_POST['submit'])) {
+			 		$ingredient_name = $_POST['ingredient_name'];
+					$quantity = $_POST['quantity'];
+					$cost = $_POST['cost'];
+							
+						$qe = query("INSERT INTO ingredients set
+					ingredient_name = '$ingredient_name'
+					,quantity = '$quantity'
+					,cost = '$cost'
+					");
+						confirm($qe);
+							header("location: ingredients.php");
+							
+			 	}
+
+					} else {
+					echo "Fill required fields";
+					}
+					}
+					?>
 	  				</div>
 					</div>
-			<div class="col-4">
+			<div class="col-4" style="margin-top: 10%;">
             <div class="icon-box">
               <h4>View Ingredients</h4>
               <p>View your ingredients.</p>
-			  <a href="view.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
+			  <a href="view_ingredients.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
 			  </div>
-            <div class="icon-box mt-5">
-              <h4>Update Ingredients Database</h4>
-              <p>Update your ingredient database.</p>
-			  <a href="update.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
-            </div>
-            <div class="icon-box mt-5">
-              <h4>Delete Ingredient From Database</h4>
-              <p>Delete ingredient from the database.</p>
-			  <a href="delete.php" class="btn"><i class="bx bx-arrow-to-right"></i></a>
-            </div>
-			</div>
-			
 			</div>
   
-  
+  </div>
   </div>
   
     </section>

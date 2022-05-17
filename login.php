@@ -1,20 +1,6 @@
+
 <?php
 include "forms/db_conn.php";
-include "forms/tb_create.php";
-
-
-if (isset($_GET['login'])) {
-  if ($_GET['login'] == 'invalid') {
-    echo "<script>alert('Company name or Company password incorrect')</script>";
-  }
-}
-
-if (isset($_GET['signout'])) {
-  
-    echo "<script>alert('Logout Successful')</script>";
-  
-}
-
 ?>
 
 
@@ -58,28 +44,19 @@ if (isset($_GET['signout'])) {
       
 <div class="container mt-5">
 
-  <h2 >Signup Form</h2>
+  <h2 >Sign In</h2>
   <span style="color:#FF0000; font-size:14px">* Required</span>
   
   
-  <Form action="create.php" method="post">
-  	<input type="hidden" name="id" value="restaurant" />
+  <Form action="logincode.php" method="post">
     <label> Company Name <span style="color:#FF0000">*</span></label> <br>
     <input type="text" name="comp_name"  class="form-control"/><br>
-    <label> Company Mail <span style="color:#FF0000">*</span></label> <br>
-    <input type="text" name="comp_mail"  class="form-control"/><br>
-    <label> Company Phone Number </label> <br>
-    <input type="text" name="comp_phone"  class="form-control"/><br>
-    <label> Company Address </label> <br>
-    <input type="text" name="comp_address"  class="form-control"/><br>
-    <label> Company Description </label> <br>
-    <input type="message" name="comp_desc"  class="form-control"/><br>
-	<label> Company Password <span style="color:#FF0000">*</span></label> <br>
+    <label> Company Password <span style="color:#FF0000">*</span></label> <br>
     <input type="text" name="password"  class="form-control"/><br>
-    <button class="btn btn-success" type="submit"> Sign Up </button> <br>
+    
+    <button class="btn btn-success" name="login" type="submit"> Log in </button> <br>
 
-    <a href="login.php">Already have an account? sign in here...</a>
-
+    <a href="index.php">Don't have an account? Sign up here...</a>
     
     </Form>
   
