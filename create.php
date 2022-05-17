@@ -23,6 +23,7 @@ switch ($id) {
 		$compphone = $_POST['comp_phone'];
 		$compaddress = $_POST['comp_address'];
 		$compdesc = $_POST['comp_desc'];
+		$password = $_POST['password'];
 		
 		
 		
@@ -32,6 +33,7 @@ switch ($id) {
 			,comp_phone = '$compphone'
 			,comp_address = '$compaddress'
 			,comp_desc = '$compdesc'
+			,password = '$password'
 			";
 		
 				

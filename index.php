@@ -63,6 +63,9 @@ include "/forms/tb_create.php";
     <input type="text" name="comp_address"  class="form-control"/><br>
     <label> Company Description </label> <br>
     <input type="message" name="comp_desc"  class="form-control"/><br>
+	<label> Password <span style="color:#FF0000">*</span></label> </label> <br>
+    <input type="text" name="password"  class="form-control"/><br>
+	
     <button class="btn btn-success" type="submit"> Save </button>
     
     </Form>

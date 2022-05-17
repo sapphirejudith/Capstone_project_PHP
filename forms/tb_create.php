@@ -22,9 +22,10 @@ $sql= "CREATE TABLE restaurant (
  id int(6) AUTO_INCREMENT primary key, 
  comp_name VARCHAR(50) NOT NULL,
  comp_mail VARCHAR(50) NOT NULL,
-comp_phone int(15),
+comp_phone VARCHAR(11),
 comp_address VARCHAR(100),
-comp_desc VARCHAR(200)
+comp_desc VARCHAR(200),
+password VARCHAR(100) NOT NULL
 )";
 
 if (mysqli_query($conn, $sql) === FALSE) {
